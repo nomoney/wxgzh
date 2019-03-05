@@ -7,8 +7,19 @@
 <body>
 	<div class="main"></div>
 	<script>
-		// Bmob.initialize('1040c97123c47ac434b29313743ca03d','b643188a82d6d89775fc934c62f68d1d')
-		document.querySelector('.main').innerHTML = location.href;
+		var url = window.location;
+		var code = url.search.substr(1).match(/(^|&)code=([^&]*|$)/)[2];
+		if(code){
+			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/userinfo?code='+ code,function(res){
+				var res = JSON.parse(res);
+				document.querySelector('.main').innerHTML = res.openid+'/'+res.access_token;
+		}else{
+			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/wxCode',function(res){
+			if(typeof res ==='string' && res){
+					location.href = res;
+				}
+			})
+		}
 	</script>
 </body>
 </html>
