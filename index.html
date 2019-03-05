@@ -5,7 +5,18 @@
 	<title>用户信息</title>
 </head>
 <body>
-	<div class="main"></div>
+	<div class="main">
+		<div class="nickname">
+			
+		</div>
+		<img src="" class="headimgurl" alt="">
+		<div class="sex">
+			
+		</div>
+		<div class="address">
+			
+		</div>
+	</div>
 	<script
   src="http://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -17,7 +28,10 @@
 			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/userinfo?code='+ code,function(res){
 				var res = JSON.parse(res);
 				console.log(res);
-				document.querySelector('.main').innerHTML = res.openid+'/'+res.access_token;
+				$('.main .nickname').html(res.nickname)
+				$('.headimgurl').attr('src',res.headimgurl);
+				$('.address').html(res.province);
+				// location.replace('http://wxgzh.xlazy.com')
 			})
 		}else{
 			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/wxCode',function(res){
@@ -26,6 +40,8 @@
 				}
 			})
 		}
+		
+		// document.querySelector('.main').innerHTML = location.href;
 	</script>
 </body>
 </html>
