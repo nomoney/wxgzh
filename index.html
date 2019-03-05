@@ -13,6 +13,7 @@
 			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/userinfo?code='+ code,function(res){
 				var res = JSON.parse(res);
 				document.querySelector('.main').innerHTML = res.openid+'/'+res.access_token;
+			})
 		}else{
 			$.get('http://cloud.bmob.cn/4df306b05e7ea7d5/wxCode',function(res){
 			if(typeof res ==='string' && res){
